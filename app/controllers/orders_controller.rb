@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 	# before_action :authenticate_user!
-	# before_filter :set_default_response_format
+	before_filter :set_default_response_format
 
 	def create
 		order = Order.new(order_params)
@@ -23,9 +23,9 @@ class OrdersController < ApplicationController
 	end
 
 	private
-		# def set_default_response_format
-	 #    	request.format = :json
-	 #    end
+		def set_default_response_format
+	    	request.format = :json
+	    end
 
 		def order_params
 			params.require(:orders).permit(:state, :bill_amount, :user_id, :line_items_attributes => [:id,:product_id, :quantity, :price, :order_id ])
